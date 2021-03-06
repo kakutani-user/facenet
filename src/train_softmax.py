@@ -45,7 +45,6 @@ from tensorflow.python.framework import ops
 from tensorflow.python.ops import array_ops
 
 def main(args):
-  
     network = importlib.import_module(args.model_def)
     image_size = (args.image_size, args.image_size)
 
@@ -481,9 +480,9 @@ def parse_arguments(argv):
     parser = argparse.ArgumentParser()
     
     parser.add_argument('--logs_base_dir', type=str, 
-        help='Directory where to write event logs.', default='~/logs/facenet')
+        help='Directory where to write event logs.', default='./logs/facenet')
     parser.add_argument('--models_base_dir', type=str,
-        help='Directory where to write trained models and checkpoints.', default='~/models/facenet')
+        help='Directory where to write trained models and checkpoints.', default='./models/facenet')
     parser.add_argument('--gpu_memory_fraction', type=float,
         help='Upper bound on the amount of GPU memory that will be used by the process.', default=1.0)
     parser.add_argument('--pretrained_model', type=str,
@@ -505,7 +504,7 @@ def parse_arguments(argv):
         help='Dimensionality of the embedding.', default=128)
     parser.add_argument('--random_crop', 
         help='Performs random cropping of training images. If false, the center image_size pixels from the training images are used. ' +
-         'If the size of the images in the data directory is equal to image_size no cropping is performed', action='store_true')
+        'If the size of the images in the data directory is equal to image_size no cropping is performed', action='store_true')
     parser.add_argument('--random_flip', 
         help='Performs random horizontal flipping of training images.', action='store_true')
     parser.add_argument('--random_rotate', 
@@ -557,7 +556,7 @@ def parse_arguments(argv):
         help='The ratio of the total dataset to use for validation', default=0.0)
     parser.add_argument('--min_nrof_val_images_per_class', type=float,
         help='Classes with fewer images will be removed from the validation set', default=0)
- 
+
     # Parameters for validation on LFW
     parser.add_argument('--lfw_pairs', type=str,
         help='The file containing the pairs to use for validation.', default='data/pairs.txt')
@@ -574,7 +573,7 @@ def parse_arguments(argv):
     parser.add_argument('--lfw_subtract_mean', 
         help='Subtract feature mean before calculating distance.', action='store_true')
     return parser.parse_args(argv)
-  
+
 
 if __name__ == '__main__':
     main(parse_arguments(sys.argv[1:]))
