@@ -31,6 +31,8 @@ import os
 import argparse
 import tensorflow as tf
 import numpy as np
+
+sys.path.append(os.path.join(os.path.dirname(__file__), '..'))
 import facenet
 import align.detect_face
 import random
@@ -39,9 +41,11 @@ from PIL import Image
 
 def main(args):
     sleep(random.random())
-    output_dir = os.path.expanduser(args.output_dir)
+    # output_dir = os.path.expanduser(args.output_dir)    # Absolute Path
+    output_dir = args.output_dir
+    print(output_dir)
     if not os.path.exists(output_dir):
-        os.makedirs(output_dir)
+        os.makedirs(output_dir)     # ディレクトリがなけれは作成
     # Store some git revision info in a text file in the log directory
     src_path,_ = os.path.split(os.path.realpath(__file__))
     facenet.store_revision_info(src_path, output_dir, ' '.join(sys.argv))
